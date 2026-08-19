@@ -1,0 +1,16 @@
+{
+  "name": "international-2026-schedule",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Mobile PWA showing The International 2026 playoff schedule in the viewer's local timezone. Data from Liquipedia.",
+  "scripts": {
+    "sync": "node scripts/sync.mjs",
+    "serve": "node scripts/serve.mjs",
+    "start": "node scripts/sync.mjs && node scripts/serve.mjs",
+    "icons": "node scripts/make-icons.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

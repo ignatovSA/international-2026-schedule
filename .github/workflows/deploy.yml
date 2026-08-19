@@ -1,0 +1,82 @@
+name: Sync schedule and deploy
+
+# Everything runs on GitHub's servers — nothing here needs your machine to be on.
+#
+# Sync and deploy are deliberately ONE workflow. Splitting them does not work:
+# a commit pushed with the default GITHUB_TOKEN does not trigger further
+# workflow runs (GitHub's recursion guard), so a separate push-triggered deploy
+# would never fire from the cron and the site would silently go stale.
+
+on:
+  schedule:
+    # Every 20 minutes. One Liquipedia API call per run, well inside their
+    # rate limit (they ask for at most one action=parse call per 30 seconds).
+    #
+    # GitHub queues scheduled runs on shared infrastructure and can delay them
+    # by several minutes under load, so treat this as "roughly every 20 min",
+    # not a guarantee.
+    - cron: '*/20 * * * *'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race; let a queued one wait rather than cancelling it.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # If Liquipedia is unreachable or changes its layout, sync.mjs fails
+      # without touching the file, so we still deploy the last good schedule
+      # that is committed in the repo.
+      - name: Fetch latest schedule from Liquipedia
+        continue-on-error: true
+        run: node scripts/sync.mjs --force
+
+      # The deployed artifact is built from the working tree, so the fresh
+      # schedule ships whether or not it is ever committed. Committing is left
+      # off on purpose: at this cadence it would add ~70 commits a day of noise.
+      # To keep a history instead, uncomment this step and add `contents: write`
+      # to permissions above.
+      #
+      # - name: Commit the refreshed schedule
+      #   run: |
+      #     git diff --quiet -- public/data/schedule.json && exit 0
+      #     git config user.name "github-actions[bot]"
+      #     git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     git commit -am "chore: update TI 2026 schedule from Liquipedia"
+      #     git push
+
+      - name: Show what will be published
+        run: |
+          node -e "
+            const d = require('./public/data/schedule.json');
+            const done = d.matches.filter(m => m.finished).length;
+            console.log(\`\${d.matchCount} matches, \${done} finished, updated \${d.updatedAt}\`);
+          "
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

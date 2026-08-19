@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5"
+    />
+    <title>TI 2026 Schedule</title>
+    <meta
+      name="description"
+      content="The International 2026 playoff schedule, shown in your local timezone."
+    />
+
+    <meta name="theme-color" content="#0a0b0e" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="manifest" href="manifest.webmanifest" />
+
+    <!-- iOS standalone / install support -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="TI 2026" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <link rel="icon" href="icons/icon-192.png" sizes="192x192" />
+    <link rel="icon" href="icons/favicon.svg" type="image/svg+xml" />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="topbar__row">
+        <div class="topbar__title">
+          <h1>The International 2026</h1>
+          <p class="topbar__sub" id="subtitle">Main Event · Shanghai</p>
+        </div>
+        <button
+          id="refresh"
+          class="iconbtn"
+          type="button"
+          title="Refresh schedule"
+          aria-label="Refresh schedule"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M20 11a8 8 0 1 0-.6 4M20 4v6h-6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div class="topbar__row topbar__row--controls">
+        <!-- Bracket is the default view; app.js re-applies this from the saved
+             preference on boot, these values just avoid a flash of the wrong state. -->
+        <div class="segmented" role="group" aria-label="View">
+          <button id="view-list" class="segmented__btn" type="button" aria-pressed="false">
+            List
+          </button>
+          <button id="view-bracket" class="segmented__btn" type="button" aria-pressed="true">
+            Bracket
+          </button>
+        </div>
+
+        <label class="tzpicker">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="tzpicker__icon">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" />
+            <path
+              d="M12 7v5l3 2"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+          <select id="tz" aria-label="Show times in"></select>
+        </label>
+
+        <button
+          id="toggle-past"
+          class="iconbtn iconbtn--sm"
+          type="button"
+          aria-pressed="false"
+          title="Hide finished matches"
+          aria-label="Hide finished matches"
+          hidden
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <circle cx="12" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2" />
+            <path
+              class="eye-slash"
+              d="M4 20 20 4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <div id="banner" class="banner" hidden></div>
+
+    <main id="app" class="app">
+      <p class="loading">Loading schedule…</p>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Times shown in <span id="footer-tz">your local timezone</span>. Schedule data from
+        <a id="source-link" href="https://liquipedia.net/dota2/The_International/2026/Main_Event"
+          >Liquipedia</a
+        >, available under
+        <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.
+      </p>
+      <p class="footer__updated">Schedule updated <span id="updated">—</span></p>
+      <button id="ics" class="linkbtn" type="button">Add all matches to calendar (.ics)</button>
+    </footer>
+
+    <dialog id="sheet" class="sheet" aria-label="Match details">
+      <div id="sheet-body" class="sheet__body"></div>
+    </dialog>
+
+    <noscript>
+      <p style="padding: 24px; text-align: center">
+        This schedule needs JavaScript to convert match times into your timezone.
+      </p>
+    </noscript>
+
+    <script>
+      // Browsers block module scripts and fetch() on file:// origins, so app.js
+      // never even runs when index.html is opened by double-clicking it. This
+      // inline (non-module) script still runs, so use it to say what to do
+      // instead of leaving a permanently stuck "Loading schedule…".
+      if (location.protocol === 'file:') {
+        document.getElementById('app').innerHTML = [
+          '<div class="notice">',
+          '<h2>This needs to be served over http</h2>',
+          '<p>You opened the file directly. Browsers block module scripts and',
+          ' data loading on <code>file://</code> URLs, so the app cannot start.</p>',
+          '<p>In the project folder run:</p>',
+          '<pre>npm start</pre>',
+          '<p>then open <a href="http://localhost:5173">http://localhost:5173</a>.</p>',
+          '</div>',
+        ].join('')
+      }
+    </script>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
