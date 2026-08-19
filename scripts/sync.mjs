@@ -18,7 +18,8 @@
  *     of this script; the PWA only ever reads the generated JSON.
  */
 
-import { writeFile, readFile, mkdir } from 'node:fs/promises'
+import { writeFile, readFile, mkdir, appendFile } from 'node:fs/promises'
+import { createHash } from 'node:crypto'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -333,6 +334,23 @@ async function readPrevious() {
   }
 }
 
+/**
+ * Fingerprint of the schedule itself, deliberately excluding `updatedAt`.
+ *
+ * Without this every sync would look like a change — the timestamp alone
+ * differs — so a "commit only when something changed" rule would commit every
+ * single run. Hashing just the content makes "nothing happened" detectable.
+ */
+const contentHashOf = (core) =>
+  createHash('sha256').update(JSON.stringify(core)).digest('hex').slice(0, 16)
+
+/** Expose a result to later workflow steps; a no-op outside GitHub Actions. */
+async function setStepOutput(name, value) {
+  if (process.env.GITHUB_OUTPUT) {
+    await appendFile(process.env.GITHUB_OUTPUT, `${name}=${value}\n`)
+  }
+}
+
 const argValue = (name) => {
   const hit = process.argv.find((a) => a.startsWith(`--${name}=`))
   return hit ? hit.slice(name.length + 3) : null
@@ -367,16 +385,28 @@ async function main() {
   // deriving columns from round order.
   const layout = parseBracketLayout(html)
 
-  const payload = {
+  const core = {
     tournament: { ...TOURNAMENT, sourceUrl: `${WIKI}/${page.replace(/ /g, '_')}` },
-    updatedAt: new Date().toISOString(),
     matchCount: matches.length,
     layout,
     matches,
   }
+  const contentHash = contentHashOf(core)
+
+  // Nothing moved since last time: leave the file byte-identical so the caller
+  // has nothing to commit and nothing to redeploy.
+  if (previous?.contentHash === contentHash) {
+    console.log('No change since the last sync — file left untouched.')
+    console.log(`  still ${matches.length} matches, unchanged since ${previous.updatedAt}`)
+    await setStepOutput('changed', 'false')
+    return
+  }
+
+  const payload = { ...core, contentHash, updatedAt: new Date().toISOString() }
 
   await mkdir(dirname(outFile), { recursive: true })
   await writeFile(outFile, `${JSON.stringify(payload, null, 2)}\n`)
+  await setStepOutput('changed', 'true')
 
   const finished = matches.filter((m) => m.finished).length
   const decided = matches.filter((m) => m.teams.every((t) => !t.tbd)).length

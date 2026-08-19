@@ -127,9 +127,16 @@ badges instead.
 ## Keeping it up to date
 
 - **Manually:** `npm run sync`
-- **Automatically:** `.github/workflows/deploy.yml` re-syncs and redeploys every
-  20 minutes. It runs on GitHub's servers, so nothing needs to stay online at
+- **Automatically:** `.github/workflows/deploy.yml` checks Liquipedia every
+  5 minutes. It runs on GitHub's servers, so nothing needs to stay online at
   home. One Liquipedia API call per run.
+
+It only commits and redeploys when the schedule actually moved. `sync.mjs`
+fingerprints the content *excluding* `updatedAt` and stores it as `contentHash`;
+if the hash matches the previous file it leaves the file byte-identical and
+reports `changed=false`, so a quiet hour produces no commits and no deploys.
+Without that, the timestamp alone would differ every run and "commit only on
+change" would commit every single time.
 
 There is no server and no database to run. The whole dataset is ~16 KB of JSON,
 so a file in the repo is the store.
@@ -148,8 +155,9 @@ committed schedule is published instead.
 
 ### Two caveats with GitHub's cron
 
-- Scheduled runs sit on shared infrastructure and can be **delayed by several
-  minutes** under load. `*/20` means "roughly every 20 minutes", not exactly.
+- **5 minutes is the floor.** GitHub does not honour intervals shorter than
+  that, and scheduled runs sit on shared infrastructure, so they can be
+  **delayed by several minutes** under load. Treat `*/5` as best effort.
 - GitHub **disables scheduled workflows after 60 days without repo activity**.
   Irrelevant across a four-day tournament; worth knowing if you leave it running.
 

@@ -9,19 +9,19 @@ name: Sync schedule and deploy
 
 on:
   schedule:
-    # Every 20 minutes. One Liquipedia API call per run, well inside their
-    # rate limit (they ask for at most one action=parse call per 30 seconds).
+    # Every 5 minutes — GitHub's shortest allowed interval; anything smaller
+    # (*/1, */2) is not honoured. Runs also sit on shared infrastructure and can
+    # be delayed by several minutes under load, so treat this as a best effort.
     #
-    # GitHub queues scheduled runs on shared infrastructure and can delay them
-    # by several minutes under load, so treat this as "roughly every 20 min",
-    # not a guarantee.
-    - cron: '*/20 * * * *'
+    # One Liquipedia API call per run = 1 per 300s, comfortably inside their
+    # limit of at most one action=parse call per 30s.
+    - cron: '*/5 * * * *'
   push:
     branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write # to commit a changed schedule
   pages: write
   id-token: write
 
@@ -43,40 +43,49 @@ jobs:
         with:
           node-version: '22'
 
-      # If Liquipedia is unreachable or changes its layout, sync.mjs fails
-      # without touching the file, so we still deploy the last good schedule
-      # that is committed in the repo.
+      # sync.mjs sets changed=true only when the schedule itself moved. It
+      # fingerprints the content excluding `updatedAt`, so an unchanged
+      # schedule leaves the file byte-identical — nothing to commit, nothing
+      # to republish.
+      #
+      # If Liquipedia is unreachable or changes its layout the script fails
+      # without touching the file, so the last good schedule stays published.
       - name: Fetch latest schedule from Liquipedia
+        id: sync
         continue-on-error: true
         run: node scripts/sync.mjs --force
 
-      # The deployed artifact is built from the working tree, so the fresh
-      # schedule ships whether or not it is ever committed. Committing is left
-      # off on purpose: at this cadence it would add ~70 commits a day of noise.
-      # To keep a history instead, uncomment this step and add `contents: write`
-      # to permissions above.
-      #
-      # - name: Commit the refreshed schedule
-      #   run: |
-      #     git diff --quiet -- public/data/schedule.json && exit 0
-      #     git config user.name "github-actions[bot]"
-      #     git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      #     git commit -am "chore: update TI 2026 schedule from Liquipedia"
-      #     git push
+      - name: Commit the refreshed schedule
+        if: steps.sync.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/schedule.json
+          git commit -m "chore: update TI 2026 schedule from Liquipedia"
+          git push
 
-      - name: Show what will be published
+      - name: Report
         run: |
           node -e "
             const d = require('./public/data/schedule.json');
             const done = d.matches.filter(m => m.finished).length;
-            console.log(\`\${d.matchCount} matches, \${done} finished, updated \${d.updatedAt}\`);
+            const tbd = d.matches.filter(m => m.teams.some(t => t.tbd)).length;
+            console.log(\`\${d.matchCount} matches · \${done} finished · \${tbd} awaiting opponents\`);
+            console.log(\`content \${d.contentHash}, updated \${d.updatedAt}\`);
           "
+          echo "schedule changed this run: ${{ steps.sync.outputs.changed || 'unknown (sync failed)' }}"
 
+      # Republishing an identical site 288x a day is pointless, so a scheduled
+      # run only deploys when the data actually moved. Pushes and manual runs
+      # always deploy, because those change the app itself, not the schedule.
       - uses: actions/configure-pages@v5
+        if: steps.sync.outputs.changed == 'true' || github.event_name != 'schedule'
 
       - uses: actions/upload-pages-artifact@v3
+        if: steps.sync.outputs.changed == 'true' || github.event_name != 'schedule'
         with:
           path: public
 
       - id: deployment
+        if: steps.sync.outputs.changed == 'true' || github.event_name != 'schedule'
         uses: actions/deploy-pages@v4
