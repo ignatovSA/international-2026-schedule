@@ -41,7 +41,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       # If Liquipedia is unreachable or changes its layout, sync.mjs fails
       # without touching the file, so we still deploy the last good schedule
