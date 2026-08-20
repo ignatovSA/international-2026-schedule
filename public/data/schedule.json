@@ -155,23 +155,12 @@
       ],
       "score": [
         0,
-        1
+        2
       ],
-      "winner": null,
-      "finished": false,
-      "streams": [
-        {
-          "platform": "twitch",
-          "url": "https://www.twitch.tv/dota2ti",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/twitch/The_International"
-        },
-        {
-          "platform": "youtube",
-          "url": "https://www.youtube.com/watch?v=hC1V-oCh1r0",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/hC1V-oCh1r0"
-        }
-      ],
-      "matchUrl": null
+      "winner": 1,
+      "finished": true,
+      "streams": [],
+      "matchUrl": "https://liquipedia.net/dota2/Match:ID_TI2026Main_R01-M003"
     },
     {
       "id": "TI2026Main_R01-M004",
@@ -179,8 +168,8 @@
       "round": "Upper Bracket Quarterfinals",
       "roundShort": "UB QF",
       "bracket": "upper",
-      "startsAtUnix": 1787229000,
-      "startsAt": "2026-08-20T12:30:00.000Z",
+      "startsAtUnix": 1787231700,
+      "startsAt": "2026-08-20T13:15:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -264,10 +253,10 @@
       "bestOf": 3,
       "teams": [
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "Team Liquid",
+          "short": "Liquid",
+          "url": "https://liquipedia.net/dota2/Team_Liquid",
+          "tbd": false
         },
         {
           "name": "TBD",
@@ -344,10 +333,10 @@
       "bestOf": 3,
       "teams": [
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "Team Yandex",
+          "short": "Yandex",
+          "url": "https://liquipedia.net/dota2/Team_Yandex",
+          "tbd": false
         },
         {
           "name": "TBD",
@@ -614,6 +603,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "813f4c017516e556",
-  "updatedAt": "2026-08-20T12:02:55.464Z"
+  "contentHash": "69cd37427dc29345",
+  "updatedAt": "2026-08-20T13:05:35.632Z"
 }
