@@ -96,7 +96,7 @@
       "winner": 1,
       "finished": true,
       "streams": [],
-      "matchUrl": null
+      "matchUrl": "https://liquipedia.net/dota2/Match:ID_TI2026Main_R01-M001"
     },
     {
       "id": "TI2026Main_R01-M002",
@@ -104,8 +104,8 @@
       "round": "Upper Bracket Quarterfinals",
       "roundShort": "UB QF",
       "bracket": "upper",
-      "startsAtUnix": 1787203800,
-      "startsAt": "2026-08-20T05:30:00.000Z",
+      "startsAtUnix": 1787204700,
+      "startsAt": "2026-08-20T05:45:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -121,9 +121,12 @@
           "tbd": false
         }
       ],
-      "score": null,
+      "score": [
+        0,
+        0
+      ],
       "winner": null,
-      "finished": false,
+      "finished": true,
       "streams": [
         {
           "platform": "twitch",
@@ -619,6 +622,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "3994e4b2e7480682",
-  "updatedAt": "2026-08-20T05:18:14.739Z"
+  "contentHash": "b8a4ea1434313ff0",
+  "updatedAt": "2026-08-20T05:50:27.050Z"
 }
