@@ -91,22 +91,11 @@
       ],
       "score": [
         0,
-        1
+        2
       ],
       "winner": 1,
       "finished": true,
-      "streams": [
-        {
-          "platform": "twitch",
-          "url": "https://www.twitch.tv/dota2ti",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/twitch/The_International"
-        },
-        {
-          "platform": "youtube",
-          "url": "https://www.youtube.com/watch?v=hC1V-oCh1r0",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/hC1V-oCh1r0"
-        }
-      ],
+      "streams": [],
       "matchUrl": null
     },
     {
@@ -115,8 +104,8 @@
       "round": "Upper Bracket Quarterfinals",
       "roundShort": "UB QF",
       "bracket": "upper",
-      "startsAtUnix": 1787202000,
-      "startsAt": "2026-08-20T05:00:00.000Z",
+      "startsAtUnix": 1787203800,
+      "startsAt": "2026-08-20T05:30:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -240,10 +229,10 @@
       "bestOf": 3,
       "teams": [
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "Iron Wing",
+          "short": "IW",
+          "url": "https://liquipedia.net/dota2/Iron_Wing",
+          "tbd": false
         },
         {
           "name": "TBD",
@@ -320,10 +309,10 @@
       "bestOf": 3,
       "teams": [
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "Team Spirit",
+          "short": "TSpirit",
+          "url": "https://liquipedia.net/dota2/Team_Spirit",
+          "tbd": false
         },
         {
           "name": "TBD",
@@ -630,6 +619,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "e534088f0572e7fe",
-  "updatedAt": "2026-08-20T04:07:41.853Z"
+  "contentHash": "3994e4b2e7480682",
+  "updatedAt": "2026-08-20T05:18:14.739Z"
 }
