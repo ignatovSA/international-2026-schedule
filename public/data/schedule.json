@@ -187,7 +187,7 @@
       ],
       "score": [
         0,
-        0
+        1
       ],
       "winner": null,
       "finished": false,
@@ -606,6 +606,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "0eb7b1f6db46a00f",
-  "updatedAt": "2026-08-20T13:55:55.605Z"
+  "contentHash": "020f941b30ebaca6",
+  "updatedAt": "2026-08-20T15:07:22.625Z"
 }
