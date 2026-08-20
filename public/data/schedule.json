@@ -186,24 +186,13 @@
         }
       ],
       "score": [
-        1,
+        2,
         1
       ],
-      "winner": null,
-      "finished": false,
-      "streams": [
-        {
-          "platform": "twitch",
-          "url": "https://www.twitch.tv/dota2ti",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/twitch/The_International"
-        },
-        {
-          "platform": "youtube",
-          "url": "https://www.youtube.com/watch?v=hC1V-oCh1r0",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/hC1V-oCh1r0"
-        }
-      ],
-      "matchUrl": null
+      "winner": 0,
+      "finished": true,
+      "streams": [],
+      "matchUrl": "https://liquipedia.net/dota2/Match:ID_TI2026Main_R01-M004"
     },
     {
       "id": "TI2026Main_R01-M005",
@@ -262,10 +251,10 @@
           "tbd": false
         },
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "Team Falcons",
+          "short": "Falcons",
+          "url": "https://liquipedia.net/dota2/Team_Falcons",
+          "tbd": false
         }
       ],
       "score": null,
@@ -342,10 +331,10 @@
           "tbd": false
         },
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "Nigma Galaxy",
+          "short": "NGX",
+          "url": "https://liquipedia.net/dota2/Nigma_Galaxy",
+          "tbd": false
         }
       ],
       "score": null,
@@ -606,6 +595,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "c0525873862f558b",
-  "updatedAt": "2026-08-20T16:15:06.867Z"
+  "contentHash": "a3116bae50fa4e1c",
+  "updatedAt": "2026-08-20T17:50:07.184Z"
 }
