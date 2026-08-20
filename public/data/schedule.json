@@ -122,11 +122,11 @@
         }
       ],
       "score": [
-        0,
+        1,
         0
       ],
       "winner": null,
-      "finished": true,
+      "finished": false,
       "streams": [
         {
           "platform": "twitch",
@@ -147,8 +147,8 @@
       "round": "Upper Bracket Quarterfinals",
       "roundShort": "UB QF",
       "bracket": "upper",
-      "startsAtUnix": 1787212800,
-      "startsAt": "2026-08-20T08:00:00.000Z",
+      "startsAtUnix": 1787216400,
+      "startsAt": "2026-08-20T09:00:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -187,8 +187,8 @@
       "round": "Upper Bracket Quarterfinals",
       "roundShort": "UB QF",
       "bracket": "upper",
-      "startsAtUnix": 1787223600,
-      "startsAt": "2026-08-20T11:00:00.000Z",
+      "startsAtUnix": 1787225400,
+      "startsAt": "2026-08-20T11:30:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -622,6 +622,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "b8a4ea1434313ff0",
-  "updatedAt": "2026-08-20T05:50:27.050Z"
+  "contentHash": "b31800973dac3128",
+  "updatedAt": "2026-08-20T07:43:15.700Z"
 }

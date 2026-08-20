@@ -1,7 +1,7 @@
 /* Service worker: makes the app installable and usable offline.
    Bump CACHE_VERSION whenever a shell file changes. */
 
-const CACHE_VERSION = 'ti2026-v5'
+const CACHE_VERSION = 'ti2026-v6'
 const SHELL_CACHE = `${CACHE_VERSION}-shell`
 const DATA_CACHE = `${CACHE_VERSION}-data`
 

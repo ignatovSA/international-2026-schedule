@@ -156,24 +156,33 @@ function parseTeamCell(cell) {
   }
 }
 
+/**
+ * A score alone does not mean the series is over — Liquipedia publishes the
+ * running score of a match in progress in exactly the same cell.
+ *
+ *   finished :  `0:<b>2</b>`  — the winner's score is bolded
+ *   live     :  `1:0`         — numbers, no bold
+ *   upcoming :  `vs`
+ *
+ * So `decided` (is a side bolded) is tracked separately from `score`, and the
+ * caller corroborates it with the timer class on the date cell.
+ */
 function parseScoreCell(cell) {
   const bestOf = Number(/Best of (\d+)/.exec(cell)?.[1] ?? 0) || null
 
-  // Played: `<b>2</b>:0` (the winner's score is bolded). Unplayed: `vs`.
   const line = text(/<div style="line-height:1\.1">([\s\S]*?)<\/div>/.exec(cell)?.[1] ?? '')
   const pair = /^(\d+)\s*:\s*(\d+)$/.exec(line)
-  if (!pair) return { bestOf, score: null, winner: null }
+  if (!pair) return { bestOf, score: null, decided: false, winner: null }
 
   const score = [Number(pair[1]), Number(pair[2])]
   const boldLeft = /<b>\s*\d+\s*<\/b>\s*:/.test(cell)
   const boldRight = /:\s*<b>\s*\d+\s*<\/b>/.test(cell)
+  const decided = boldLeft !== boldRight
 
   let winner = null
-  if (boldLeft && !boldRight) winner = 0
-  else if (boldRight && !boldLeft) winner = 1
-  else if (score[0] !== score[1]) winner = score[0] > score[1] ? 0 : 1
+  if (decided) winner = boldLeft ? 0 : 1
 
-  return { bestOf, score, winner }
+  return { bestOf, score, decided, winner }
 }
 
 /**
@@ -197,6 +206,11 @@ function directStreamUrl(platform, path, twitchChannel) {
 function parseDateCell(cell, twitchChannel) {
   const unix = Number(/data-timestamp="(\d+)"/.exec(cell)?.[1] ?? 0)
 
+  // Liquipedia swaps the timer once a series ends: a match still to come (or in
+  // progress) counts down, a finished one just shows its date. This is the
+  // clearest "is it over" signal on the page.
+  const settled = /timer-object-datetime-only/.test(cell)
+
   const streams = [
     ...cell.matchAll(/href="\/dota2\/Special:Stream\/([a-z]+)\/([^"]+)"/g),
   ].map(([, platform, path]) => {
@@ -204,7 +218,7 @@ function parseDateCell(cell, twitchChannel) {
     return { platform, url: directStreamUrl(platform, path, twitchChannel) ?? fallbackUrl, fallbackUrl }
   })
 
-  return { unix: unix || null, streams }
+  return { unix: unix || null, settled, streams }
 }
 
 /** "Upper Bracket Quarterfinals" -> "UB QF"; keeps anything it doesn't recognise. */
@@ -277,9 +291,15 @@ function parseSchedule(html, twitchChannel) {
 
     const [dateCell, roundCell, leftCell, scoreCell, rightCell, linkCell = ''] = cells
 
-    const { unix, streams } = parseDateCell(dateCell, twitchChannel)
+    const { unix, settled, streams } = parseDateCell(dateCell, twitchChannel)
     const round = text(roundCell)
-    const { bestOf, score, winner } = parseScoreCell(scoreCell)
+    const { bestOf, score, decided, winner } = parseScoreCell(scoreCell)
+
+    // Three independent signals, any of which means the series is over. Taking
+    // the union keeps a live 1:0 out of the "finished" bucket without relying
+    // on a single piece of Liquipedia markup staying put.
+    const clinched = Boolean(bestOf && score && Math.max(...score) > bestOf / 2)
+    const finished = settled || decided || clinched
 
     // e.g. "Match:ID_TI2026Main_R01-M001" — stable per match, so the client can
     // keep per-match UI state across refreshes.
@@ -298,9 +318,11 @@ function parseSchedule(html, twitchChannel) {
       startsAt: unix ? new Date(unix * 1000).toISOString() : null,
       bestOf,
       teams: [parseTeamCell(leftCell), parseTeamCell(rightCell)],
+      // Present for a match in progress too — that is the running score.
       score,
-      winner,
-      finished: score !== null,
+      // Only meaningful once finished; a leading team has not won yet.
+      winner: finished ? winner : null,
+      finished,
       streams,
       matchUrl: hasPublicPage ? `https://liquipedia.net/dota2/Match:ID_${id}` : null,
     }

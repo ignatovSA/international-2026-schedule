@@ -129,6 +129,9 @@ const liveWindowMs = (match) => ((match.bestOf || 3) * 60 + 45) * 60_000
 
 function statusOf(match, now) {
   if (match.finished) return 'finished'
+  // A published score on an unfinished series is the running score, which is
+  // proof it is under way — more reliable than any clock heuristic.
+  if (match.score) return 'live'
   if (!match.startsAtUnix) return 'scheduled'
   const start = match.startsAtUnix * 1000
   if (now < start) return 'upcoming'
@@ -199,7 +202,8 @@ function teamRow(team, { score, isWinner, isLoser, showScore }) {
 function matchCard(match, tz, now) {
   const status = statusOf(match, now)
   const date = match.startsAtUnix ? new Date(match.startsAtUnix * 1000) : null
-  const showScore = status === 'finished'
+  // A live series has a running score worth showing, not just a finished one.
+  const showScore = Boolean(match.score)
 
   const classes = ['match']
   if (status === 'live') classes.push('match--live')
@@ -219,7 +223,7 @@ function matchCard(match, tz, now) {
             : '<span class="match__rel">Time to be announced</span>'
 
   const streamLinks =
-    status === 'finished'
+    status === 'finished' || status === 'pending'
       ? ''
       : (match.streams || [])
           .filter((s) => ICONS[s.platform])
@@ -276,16 +280,59 @@ function matchCard(match, tz, now) {
     </article>`
 }
 
-function heroCard(match, tz, now) {
+/**
+ * The banners at the top: every match currently under way, then the next one
+ * still to come. During TI the schedule overlaps — a Bo3 routinely runs past
+ * the start of the following series — so "what's on now" and "what's next" are
+ * different questions and both get a card.
+ */
+function heroMatches(matches, nowMs) {
+  const byStart = [...matches].sort(
+    (a, b) => (a.startsAtUnix ?? Infinity) - (b.startsAtUnix ?? Infinity)
+  )
+  const live = byStart.filter((m) => statusOf(m, nowMs) === 'live')
+  const next = byStart.find((m) => statusOf(m, nowMs) === 'upcoming' && m.startsAtUnix)
+
+  const picked = [...live]
+  if (next) picked.push(next)
+  // Guard against a pathological run of "live" matches eating the screen.
+  return picked.slice(0, 3)
+}
+
+function heroCard(match, tz, now, { compact = false, label } = {}) {
   const date = new Date(match.startsAtUnix * 1000)
   const live = statusOf(match, now) === 'live'
   const [a, b] = match.teams
 
+  // Live: the score is the headline and the clock counts up from the start.
+  // Upcoming: the countdown is the headline.
+  const headline = live
+    ? match.score
+      ? `<div class="hero__score">${match.score[0]}<span>:</span>${match.score[1]}</div>`
+      : '<div class="hero__countdown">In progress</div>'
+    : `<div class="hero__countdown" data-precise="${match.startsAtUnix}">${preciseCountdown(
+        date - now
+      )}</div>`
+
+  const when = live
+    ? `<span data-elapsed="${match.startsAtUnix}">Started ${humanDuration(
+        now - date
+      )} ago</span> · ${match.bestOf ? `Bo${match.bestOf} · ` : ''}${fmtTime(date, tz)}`
+    : `${escapeHtml(relativeDayLabel(date, tz, now))}, ${fmtDayLong(date, tz)} · ${fmtTime(
+        date,
+        tz
+      )}`
+
   return `
-    <section class="hero" data-mid="${escapeHtml(match.id)}" tabindex="0" role="button"
+    <section class="hero${compact ? ' hero--compact' : ''}${live ? ' hero--live' : ''}"
+      data-mid="${escapeHtml(match.id)}" tabindex="0" role="button"
       aria-label="Match details: ${escapeHtml(match.teams.map((t) => t.name).join(' versus '))}">
       <div class="hero__label">
-        ${live ? '<span class="live-dot">Live now</span>' : '<span>Next match</span>'}
+        ${
+          live
+            ? '<span class="live-dot">Live now</span>'
+            : `<span>${escapeHtml(label ?? 'Next match')}</span>`
+        }
         <span class="hero__round" style="--accent:${
           BRACKET_COLOR[match.bracket] || BRACKET_COLOR.other
         }" title="${escapeHtml(match.round)}">${escapeHtml(match.roundShort)}</span>
@@ -297,17 +344,25 @@ function heroCard(match, tz, now) {
         <span>${escapeHtml(b.name)}</span>
       </div>
 
-      ${
-        live
-          ? '<div class="hero__countdown">In progress</div>'
-          : `<div class="hero__countdown" data-precise="${match.startsAtUnix}">${preciseCountdown(
-              date - now
-            )}</div>`
-      }
-      <div class="hero__when">${escapeHtml(
-        relativeDayLabel(date, tz, now)
-      )}, ${fmtDayLong(date, tz)} · ${fmtTime(date, tz)}</div>
+      ${headline}
+      <div class="hero__when">${when}</div>
     </section>`
+}
+
+function heroMarkup(matches, tz, nowMs) {
+  const picked = heroMatches(matches, nowMs)
+  if (!picked.length) return ''
+
+  const compact = picked.length > 1
+  return picked
+    .map((m, i) =>
+      heroCard(m, tz, nowMs, {
+        compact,
+        // With something already live, the following match is "up next".
+        label: i === 0 ? 'Next match' : 'Up next',
+      })
+    )
+    .join('')
 }
 
 // ---------------------------------------------------------------- bracket view
@@ -410,7 +465,7 @@ function bracketTeamRow(team, { score, isWinner, isLoser, showScore }) {
 function bracketCard(match, tz, nowMs) {
   const status = statusOf(match, nowMs)
   const date = match.startsAtUnix ? new Date(match.startsAtUnix * 1000) : null
-  const showScore = status === 'finished'
+  const showScore = Boolean(match.score)
 
   const classes = ['bmatch']
   if (status === 'live') classes.push('bmatch--live')
@@ -543,8 +598,7 @@ function render() {
 
   if (state.view === 'bracket') {
     renderChrome(data, tz, nowMs)
-    const next = nextMatch(data.matches, nowMs)
-    el.app.innerHTML = (next ? heroCard(next, tz, nowMs) : '') + bracketMarkup(data, tz, nowMs)
+    el.app.innerHTML = heroMarkup(data.matches, tz, nowMs) + bracketMarkup(data, tz, nowMs)
     state.signature = signatureOf(data.matches, nowMs)
     // Lay out first, then measure.
     requestAnimationFrame(drawBracketLines)
@@ -553,14 +607,6 @@ function render() {
 
   renderList(data, tz, nowMs)
 }
-
-const nextMatch = (matches, nowMs) =>
-  [...matches]
-    .sort((a, b) => (a.startsAtUnix ?? Infinity) - (b.startsAtUnix ?? Infinity))
-    .find((m) => {
-      const s = statusOf(m, nowMs)
-      return (s === 'upcoming' || s === 'live') && m.startsAtUnix
-    })
 
 function renderChrome(data, tz, nowMs) {
   // The list reads best in a narrow column; the bracket wants the whole window.
@@ -582,8 +628,6 @@ function renderList(data, tz, nowMs) {
     (a, b) => (a.startsAtUnix ?? Infinity) - (b.startsAtUnix ?? Infinity)
   )
   if (state.hidePast) matches = matches.filter((m) => statusOf(m, nowMs) !== 'finished')
-
-  const upcoming = nextMatch(matches, nowMs)
 
   const groups = new Map()
   for (const match of matches) {
@@ -614,7 +658,7 @@ function renderList(data, tz, nowMs) {
   })
 
   el.app.innerHTML =
-    (upcoming ? heroCard(upcoming, tz, nowMs) : '') +
+    heroMarkup(data.matches, tz, nowMs) +
     (sections.length ? sections.join('') : '<p class="empty">No matches to show.</p>')
 
   renderChrome(data, tz, nowMs)
@@ -636,7 +680,7 @@ const PLATFORM_LABEL = { twitch: 'Twitch', youtube: 'YouTube' }
 function sheetMarkup(match, tz, nowMs) {
   const status = statusOf(match, nowMs)
   const date = match.startsAtUnix ? new Date(match.startsAtUnix * 1000) : null
-  const showScore = status === 'finished'
+  const showScore = Boolean(match.score)
   const accent = BRACKET_COLOR[match.bracket] || BRACKET_COLOR.other
 
   const statusLine =
@@ -766,6 +810,9 @@ function tick() {
     }
     for (const node of scope.querySelectorAll('[data-countdown]')) {
       node.textContent = `in ${humanDuration(Number(node.dataset.countdown) * 1000 - now)}`
+    }
+    for (const node of scope.querySelectorAll('[data-elapsed]')) {
+      node.textContent = `Started ${humanDuration(now - Number(node.dataset.elapsed) * 1000)} ago`
     }
   }
 }
