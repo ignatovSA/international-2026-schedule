@@ -91,9 +91,9 @@
       ],
       "score": [
         0,
-        0
+        1
       ],
-      "winner": null,
+      "winner": 1,
       "finished": true,
       "streams": [
         {
@@ -630,6 +630,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "b490f84248809c8a",
-  "updatedAt": "2026-08-20T03:27:01.881Z"
+  "contentHash": "e534088f0572e7fe",
+  "updatedAt": "2026-08-20T04:07:41.853Z"
 }
