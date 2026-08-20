@@ -168,8 +168,8 @@
       "round": "Upper Bracket Quarterfinals",
       "roundShort": "UB QF",
       "bracket": "upper",
-      "startsAtUnix": 1787231700,
-      "startsAt": "2026-08-20T13:15:00.000Z",
+      "startsAtUnix": 1787232000,
+      "startsAt": "2026-08-20T13:20:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -185,7 +185,10 @@
           "tbd": false
         }
       ],
-      "score": null,
+      "score": [
+        0,
+        0
+      ],
       "winner": null,
       "finished": false,
       "streams": [
@@ -603,6 +606,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "69cd37427dc29345",
-  "updatedAt": "2026-08-20T13:05:35.632Z"
+  "contentHash": "0eb7b1f6db46a00f",
+  "updatedAt": "2026-08-20T13:55:55.605Z"
 }
