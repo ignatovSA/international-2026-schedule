@@ -250,7 +250,7 @@
         }
       ],
       "score": [
-        0,
+        1,
         1
       ],
       "winner": null,
@@ -275,8 +275,8 @@
       "round": "Upper Bracket Semifinals",
       "roundShort": "UB SF",
       "bracket": "upper",
-      "startsAtUnix": 1787302800,
-      "startsAt": "2026-08-21T09:00:00.000Z",
+      "startsAtUnix": 1787306400,
+      "startsAt": "2026-08-21T10:00:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -315,8 +315,8 @@
       "round": "Upper Bracket Semifinals",
       "roundShort": "UB SF",
       "bracket": "upper",
-      "startsAtUnix": 1787310000,
-      "startsAt": "2026-08-21T11:00:00.000Z",
+      "startsAtUnix": 1787315400,
+      "startsAt": "2026-08-21T12:30:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -590,6 +590,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "dcb344a709305c3e",
-  "updatedAt": "2026-08-21T07:51:06.486Z"
+  "contentHash": "fd59362139a8794d",
+  "updatedAt": "2026-08-21T09:03:44.839Z"
 }
