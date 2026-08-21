@@ -243,8 +243,8 @@
       "round": "Lower Bracket Round 1",
       "roundShort": "LB R1",
       "bracket": "lower",
-      "startsAtUnix": 1787291100,
-      "startsAt": "2026-08-21T05:45:00.000Z",
+      "startsAtUnix": 1787292000,
+      "startsAt": "2026-08-21T06:00:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -598,6 +598,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "4ff7152293135c46",
-  "updatedAt": "2026-08-21T04:59:42.629Z"
+  "contentHash": "6d10affe05b7aee1",
+  "updatedAt": "2026-08-21T05:38:14.986Z"
 }
