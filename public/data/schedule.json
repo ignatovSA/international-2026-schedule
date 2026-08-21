@@ -250,24 +250,13 @@
         }
       ],
       "score": [
-        1,
+        2,
         1
       ],
-      "winner": null,
-      "finished": false,
-      "streams": [
-        {
-          "platform": "twitch",
-          "url": "https://www.twitch.tv/dota2ti",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/twitch/The_International"
-        },
-        {
-          "platform": "youtube",
-          "url": "https://www.youtube.com/watch?v=cwgPyxlrH_Y",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/cwgPyxlrH_Y"
-        }
-      ],
-      "matchUrl": null
+      "winner": 0,
+      "finished": true,
+      "streams": [],
+      "matchUrl": "https://liquipedia.net/dota2/Match:ID_TI2026Main_R01-M006"
     },
     {
       "id": "TI2026Main_R02-M001",
@@ -275,8 +264,8 @@
       "round": "Upper Bracket Semifinals",
       "roundShort": "UB SF",
       "bracket": "upper",
-      "startsAtUnix": 1787306400,
-      "startsAt": "2026-08-21T10:00:00.000Z",
+      "startsAtUnix": 1787307300,
+      "startsAt": "2026-08-21T10:15:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -366,10 +355,10 @@
           "tbd": true
         },
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "Team Liquid",
+          "short": "Liquid",
+          "url": "https://liquipedia.net/dota2/Team_Liquid",
+          "tbd": false
         }
       ],
       "score": null,
@@ -590,6 +579,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "fd59362139a8794d",
-  "updatedAt": "2026-08-21T09:03:44.839Z"
+  "contentHash": "b2d63c8e8b35ef47",
+  "updatedAt": "2026-08-21T10:14:32.924Z"
 }
