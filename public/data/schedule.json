@@ -314,7 +314,7 @@
         }
       ],
       "score": [
-        0,
+        1,
         1
       ],
       "winner": null,
@@ -574,6 +574,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "1c9862486b7e4318",
-  "updatedAt": "2026-08-21T16:04:33.854Z"
+  "contentHash": "26e8f7412ca65cfb",
+  "updatedAt": "2026-08-21T17:14:40.615Z"
 }
