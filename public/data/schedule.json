@@ -283,23 +283,12 @@
       ],
       "score": [
         1,
-        1
+        2
       ],
-      "winner": null,
-      "finished": false,
-      "streams": [
-        {
-          "platform": "twitch",
-          "url": "https://www.twitch.tv/dota2ti",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/twitch/The_International"
-        },
-        {
-          "platform": "youtube",
-          "url": "https://www.youtube.com/watch?v=cwgPyxlrH_Y",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/cwgPyxlrH_Y"
-        }
-      ],
-      "matchUrl": null
+      "winner": 1,
+      "finished": true,
+      "streams": [],
+      "matchUrl": "https://liquipedia.net/dota2/Match:ID_TI2026Main_R02-M001"
     },
     {
       "id": "TI2026Main_R02-M002",
@@ -307,8 +296,8 @@
       "round": "Upper Bracket Semifinals",
       "roundShort": "UB SF",
       "bracket": "upper",
-      "startsAtUnix": 1787319000,
-      "startsAt": "2026-08-21T13:30:00.000Z",
+      "startsAtUnix": 1787321400,
+      "startsAt": "2026-08-21T14:10:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -324,7 +313,10 @@
           "tbd": false
         }
       ],
-      "score": null,
+      "score": [
+        0,
+        0
+      ],
       "winner": null,
       "finished": false,
       "streams": [
@@ -352,10 +344,10 @@
       "bestOf": 3,
       "teams": [
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "Team Spirit",
+          "short": "TSpirit",
+          "url": "https://liquipedia.net/dota2/Team_Spirit",
+          "tbd": false
         },
         {
           "name": "Team Liquid",
@@ -432,10 +424,10 @@
       "bestOf": 3,
       "teams": [
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "TEAM VISION",
+          "short": "VISION",
+          "url": "https://liquipedia.net/dota2/TEAM_VISION",
+          "tbd": false
         },
         {
           "name": "TBD",
@@ -582,6 +574,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "a33042e9d395c5f2",
-  "updatedAt": "2026-08-21T13:04:38.166Z"
+  "contentHash": "b5a5b849171d3f59",
+  "updatedAt": "2026-08-21T14:26:04.855Z"
 }
