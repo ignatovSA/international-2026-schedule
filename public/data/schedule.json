@@ -228,8 +228,8 @@
         },
         {
           "platform": "youtube",
-          "url": "https://www.youtube.com/@dota2",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2"
+          "url": "https://www.youtube.com/watch?v=cwgPyxlrH_Y",
+          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/cwgPyxlrH_Y"
         }
       ],
       "matchUrl": null
@@ -268,8 +268,8 @@
         },
         {
           "platform": "youtube",
-          "url": "https://www.youtube.com/@dota2",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2"
+          "url": "https://www.youtube.com/watch?v=cwgPyxlrH_Y",
+          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/cwgPyxlrH_Y"
         }
       ],
       "matchUrl": null
@@ -308,8 +308,8 @@
         },
         {
           "platform": "youtube",
-          "url": "https://www.youtube.com/@dota2",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2"
+          "url": "https://www.youtube.com/watch?v=cwgPyxlrH_Y",
+          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/cwgPyxlrH_Y"
         }
       ],
       "matchUrl": null
@@ -348,8 +348,8 @@
         },
         {
           "platform": "youtube",
-          "url": "https://www.youtube.com/@dota2",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2"
+          "url": "https://www.youtube.com/watch?v=cwgPyxlrH_Y",
+          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/cwgPyxlrH_Y"
         }
       ],
       "matchUrl": null
@@ -595,6 +595,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "a3116bae50fa4e1c",
-  "updatedAt": "2026-08-20T17:50:07.184Z"
+  "contentHash": "4e886928bcd7402e",
+  "updatedAt": "2026-08-21T01:52:02.803Z"
 }
