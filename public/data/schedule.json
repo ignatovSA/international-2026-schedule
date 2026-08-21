@@ -320,7 +320,7 @@
       "winner": 0,
       "finished": true,
       "streams": [],
-      "matchUrl": null
+      "matchUrl": "https://liquipedia.net/dota2/Match:ID_TI2026Main_R02-M002"
     },
     {
       "id": "TI2026Main_R02-M004",
@@ -563,6 +563,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "c91eeb7d13673c03",
-  "updatedAt": "2026-08-21T18:59:10.645Z"
+  "contentHash": "e947279491b4703c",
+  "updatedAt": "2026-08-21T19:49:00.447Z"
 }
