@@ -219,23 +219,12 @@
       ],
       "score": [
         1,
-        1
+        2
       ],
-      "winner": null,
-      "finished": false,
-      "streams": [
-        {
-          "platform": "twitch",
-          "url": "https://www.twitch.tv/dota2ti",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/twitch/The_International"
-        },
-        {
-          "platform": "youtube",
-          "url": "https://www.youtube.com/watch?v=cwgPyxlrH_Y",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/cwgPyxlrH_Y"
-        }
-      ],
-      "matchUrl": null
+      "winner": 1,
+      "finished": true,
+      "streams": [],
+      "matchUrl": "https://liquipedia.net/dota2/Match:ID_TI2026Main_R01-M005"
     },
     {
       "id": "TI2026Main_R01-M006",
@@ -243,8 +232,8 @@
       "round": "Lower Bracket Round 1",
       "roundShort": "LB R1",
       "bracket": "lower",
-      "startsAtUnix": 1787292000,
-      "startsAt": "2026-08-21T06:00:00.000Z",
+      "startsAtUnix": 1787292900,
+      "startsAt": "2026-08-21T06:15:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -260,7 +249,10 @@
           "tbd": false
         }
       ],
-      "score": null,
+      "score": [
+        0,
+        0
+      ],
       "winner": null,
       "finished": false,
       "streams": [
@@ -414,10 +406,10 @@
           "tbd": true
         },
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "BoomBoys",
+          "short": "BB",
+          "url": "https://liquipedia.net/dota2/BoomBoys",
+          "tbd": false
         }
       ],
       "score": null,
@@ -598,6 +590,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "6d10affe05b7aee1",
-  "updatedAt": "2026-08-21T05:38:14.986Z"
+  "contentHash": "60e73d013a0c70b3",
+  "updatedAt": "2026-08-21T07:01:43.194Z"
 }
