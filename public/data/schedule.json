@@ -314,23 +314,12 @@
         }
       ],
       "score": [
-        1,
+        2,
         1
       ],
-      "winner": null,
-      "finished": false,
-      "streams": [
-        {
-          "platform": "twitch",
-          "url": "https://www.twitch.tv/dota2ti",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/twitch/The_International"
-        },
-        {
-          "platform": "youtube",
-          "url": "https://www.youtube.com/watch?v=cwgPyxlrH_Y",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/cwgPyxlrH_Y"
-        }
-      ],
+      "winner": 0,
+      "finished": true,
+      "streams": [],
       "matchUrl": null
     },
     {
@@ -384,10 +373,10 @@
       "bestOf": 3,
       "teams": [
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "Nigma Galaxy",
+          "short": "NGX",
+          "url": "https://liquipedia.net/dota2/Nigma_Galaxy",
+          "tbd": false
         },
         {
           "name": "BoomBoys",
@@ -430,10 +419,10 @@
           "tbd": false
         },
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "Team Yandex",
+          "short": "Yandex",
+          "url": "https://liquipedia.net/dota2/Team_Yandex",
+          "tbd": false
         }
       ],
       "score": null,
@@ -574,6 +563,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "26e8f7412ca65cfb",
-  "updatedAt": "2026-08-21T17:14:40.615Z"
+  "contentHash": "c91eeb7d13673c03",
+  "updatedAt": "2026-08-21T18:59:10.645Z"
 }
