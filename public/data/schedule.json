@@ -328,8 +328,8 @@
       "round": "Lower Bracket Quarterfinals",
       "roundShort": "LB QF",
       "bracket": "lower",
-      "startsAtUnix": 1787364000,
-      "startsAt": "2026-08-22T02:00:00.000Z",
+      "startsAtUnix": 1787364600,
+      "startsAt": "2026-08-22T02:10:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -345,7 +345,10 @@
           "tbd": false
         }
       ],
-      "score": null,
+      "score": [
+        1,
+        0
+      ],
       "winner": null,
       "finished": false,
       "streams": [
@@ -563,6 +566,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "e947279491b4703c",
-  "updatedAt": "2026-08-21T19:49:00.447Z"
+  "contentHash": "e3fdba2b25c9b528",
+  "updatedAt": "2026-08-22T03:24:33.286Z"
 }
