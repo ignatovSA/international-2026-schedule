@@ -409,7 +409,10 @@
           "tbd": false
         }
       ],
-      "score": null,
+      "score": [
+        0,
+        0
+      ],
       "winner": null,
       "finished": false,
       "streams": [
@@ -547,6 +550,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "76b8260a4227d01b",
-  "updatedAt": "2026-08-22T08:47:41.531Z"
+  "contentHash": "9ff42ffcadb52744",
+  "updatedAt": "2026-08-22T09:12:43.319Z"
 }
