@@ -328,8 +328,8 @@
       "round": "Lower Bracket Quarterfinals",
       "roundShort": "LB QF",
       "bracket": "lower",
-      "startsAtUnix": 1787364600,
-      "startsAt": "2026-08-22T02:10:00.000Z",
+      "startsAtUnix": 1787364000,
+      "startsAt": "2026-08-22T02:00:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -346,24 +346,13 @@
         }
       ],
       "score": [
-        1,
+        2,
         0
       ],
-      "winner": null,
-      "finished": false,
-      "streams": [
-        {
-          "platform": "twitch",
-          "url": "https://www.twitch.tv/dota2ti",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/twitch/The_International"
-        },
-        {
-          "platform": "youtube",
-          "url": "https://www.youtube.com/@dota2",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2"
-        }
-      ],
-      "matchUrl": null
+      "winner": 0,
+      "finished": true,
+      "streams": [],
+      "matchUrl": "https://liquipedia.net/dota2/Match:ID_TI2026Main_R02-M004"
     },
     {
       "id": "TI2026Main_R02-M003",
@@ -399,8 +388,8 @@
         },
         {
           "platform": "youtube",
-          "url": "https://www.youtube.com/@dota2",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2"
+          "url": "https://www.youtube.com/watch?v=ve-SDrwS4_s",
+          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/ve-SDrwS4_s"
         }
       ],
       "matchUrl": null
@@ -439,8 +428,8 @@
         },
         {
           "platform": "youtube",
-          "url": "https://www.youtube.com/@dota2",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2"
+          "url": "https://www.youtube.com/watch?v=ve-SDrwS4_s",
+          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/ve-SDrwS4_s"
         }
       ],
       "matchUrl": null
@@ -462,10 +451,10 @@
           "tbd": true
         },
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "Team Spirit",
+          "short": "TSpirit",
+          "url": "https://liquipedia.net/dota2/Team_Spirit",
+          "tbd": false
         }
       ],
       "score": null,
@@ -479,8 +468,8 @@
         },
         {
           "platform": "youtube",
-          "url": "https://www.youtube.com/@dota2",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2"
+          "url": "https://www.youtube.com/watch?v=ve-SDrwS4_s",
+          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/ve-SDrwS4_s"
         }
       ],
       "matchUrl": null
@@ -566,6 +555,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "e3fdba2b25c9b528",
-  "updatedAt": "2026-08-22T03:24:33.286Z"
+  "contentHash": "4275c03c05ae79aa",
+  "updatedAt": "2026-08-22T04:42:53.928Z"
 }
