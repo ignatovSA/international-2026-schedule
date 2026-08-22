@@ -379,23 +379,12 @@
       ],
       "score": [
         1,
-        1
+        2
       ],
-      "winner": null,
-      "finished": false,
-      "streams": [
-        {
-          "platform": "twitch",
-          "url": "https://www.twitch.tv/dota2ti",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/twitch/The_International"
-        },
-        {
-          "platform": "youtube",
-          "url": "https://www.youtube.com/watch?v=ve-SDrwS4_s",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/ve-SDrwS4_s"
-        }
-      ],
-      "matchUrl": null
+      "winner": 1,
+      "finished": true,
+      "streams": [],
+      "matchUrl": "https://liquipedia.net/dota2/Match:ID_TI2026Main_R02-M003"
     },
     {
       "id": "TI2026Main_R04-M001",
@@ -403,8 +392,8 @@
       "round": "Upper Bracket Final",
       "roundShort": "UB Final",
       "bracket": "upper",
-      "startsAtUnix": 1787387400,
-      "startsAt": "2026-08-22T08:30:00.000Z",
+      "startsAtUnix": 1787388300,
+      "startsAt": "2026-08-22T08:45:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -448,10 +437,10 @@
       "bestOf": 3,
       "teams": [
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "BoomBoys",
+          "short": "BB",
+          "url": "https://liquipedia.net/dota2/BoomBoys",
+          "tbd": false
         },
         {
           "name": "Team Spirit",
@@ -558,6 +547,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "2f45095db5dd78a7",
-  "updatedAt": "2026-08-22T07:19:33.868Z"
+  "contentHash": "76b8260a4227d01b",
+  "updatedAt": "2026-08-22T08:47:41.531Z"
 }
