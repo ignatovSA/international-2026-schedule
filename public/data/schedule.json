@@ -410,24 +410,13 @@
         }
       ],
       "score": [
-        1,
+        2,
         1
       ],
-      "winner": null,
-      "finished": false,
-      "streams": [
-        {
-          "platform": "twitch",
-          "url": "https://www.twitch.tv/dota2ti",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/twitch/The_International"
-        },
-        {
-          "platform": "youtube",
-          "url": "https://www.youtube.com/watch?v=ve-SDrwS4_s",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/ve-SDrwS4_s"
-        }
-      ],
-      "matchUrl": null
+      "winner": 0,
+      "finished": true,
+      "streams": [],
+      "matchUrl": "https://liquipedia.net/dota2/Match:ID_TI2026Main_R04-M001"
     },
     {
       "id": "TI2026Main_R03-M001",
@@ -435,8 +424,8 @@
       "round": "Lower Bracket Semifinals",
       "roundShort": "LB SF",
       "bracket": "lower",
-      "startsAtUnix": 1787402700,
-      "startsAt": "2026-08-22T12:45:00.000Z",
+      "startsAtUnix": 1787403600,
+      "startsAt": "2026-08-22T13:00:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -480,10 +469,10 @@
       "bestOf": 3,
       "teams": [
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "Team Yandex",
+          "short": "Yandex",
+          "url": "https://liquipedia.net/dota2/Team_Yandex",
+          "tbd": false
         },
         {
           "name": "TBD",
@@ -520,10 +509,10 @@
       "bestOf": 5,
       "teams": [
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "TEAM VISION",
+          "short": "VISION",
+          "url": "https://liquipedia.net/dota2/TEAM_VISION",
+          "tbd": false
         },
         {
           "name": "TBD",
@@ -550,6 +539,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "719a691b4932ca53",
-  "updatedAt": "2026-08-22T11:52:26.065Z"
+  "contentHash": "cb1e526d54a62abb",
+  "updatedAt": "2026-08-22T13:00:48.461Z"
 }
