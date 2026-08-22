@@ -410,7 +410,7 @@
         }
       ],
       "score": [
-        0,
+        1,
         0
       ],
       "winner": null,
@@ -435,8 +435,8 @@
       "round": "Lower Bracket Semifinals",
       "roundShort": "LB SF",
       "bracket": "lower",
-      "startsAtUnix": 1787396400,
-      "startsAt": "2026-08-22T11:00:00.000Z",
+      "startsAtUnix": 1787398200,
+      "startsAt": "2026-08-22T11:30:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -550,6 +550,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "9ff42ffcadb52744",
-  "updatedAt": "2026-08-22T09:12:43.319Z"
+  "contentHash": "ae115d33fa215ac5",
+  "updatedAt": "2026-08-22T10:31:08.258Z"
 }
