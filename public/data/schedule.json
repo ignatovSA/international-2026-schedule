@@ -378,7 +378,7 @@
         }
       ],
       "score": [
-        0,
+        1,
         1
       ],
       "winner": null,
@@ -403,8 +403,8 @@
       "round": "Upper Bracket Final",
       "roundShort": "UB Final",
       "bracket": "upper",
-      "startsAtUnix": 1787385600,
-      "startsAt": "2026-08-22T08:00:00.000Z",
+      "startsAtUnix": 1787387400,
+      "startsAt": "2026-08-22T08:30:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -558,6 +558,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "4ed8fad92d5e34c5",
-  "updatedAt": "2026-08-22T05:58:43.125Z"
+  "contentHash": "2f45095db5dd78a7",
+  "updatedAt": "2026-08-22T07:19:33.868Z"
 }
