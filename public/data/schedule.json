@@ -443,22 +443,11 @@
       ],
       "score": [
         0,
-        1
+        2
       ],
-      "winner": null,
-      "finished": false,
-      "streams": [
-        {
-          "platform": "twitch",
-          "url": "https://www.twitch.tv/dota2ti",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/twitch/The_International"
-        },
-        {
-          "platform": "youtube",
-          "url": "https://www.youtube.com/watch?v=ve-SDrwS4_s",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/ve-SDrwS4_s"
-        }
-      ],
+      "winner": 1,
+      "finished": true,
+      "streams": [],
       "matchUrl": null
     },
     {
@@ -478,10 +467,10 @@
           "tbd": false
         },
         {
-          "name": "TBD",
-          "short": "TBD",
-          "url": null,
-          "tbd": true
+          "name": "Team Spirit",
+          "short": "TSpirit",
+          "url": "https://liquipedia.net/dota2/Team_Spirit",
+          "tbd": false
         }
       ],
       "score": null,
@@ -542,6 +531,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "74a0b6e420c97210",
-  "updatedAt": "2026-08-22T14:19:02.533Z"
+  "contentHash": "4f9f3677a2297c23",
+  "updatedAt": "2026-08-22T15:26:03.825Z"
 }
