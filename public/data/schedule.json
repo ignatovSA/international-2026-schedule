@@ -507,25 +507,14 @@
       ],
       "score": [
         2,
-        2
+        3
       ],
-      "winner": null,
-      "finished": false,
-      "streams": [
-        {
-          "platform": "twitch",
-          "url": "https://www.twitch.tv/dota2ti",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/twitch/The_International"
-        },
-        {
-          "platform": "youtube",
-          "url": "https://www.youtube.com/watch?v=GMbjTK8UVks",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/GMbjTK8UVks"
-        }
-      ],
-      "matchUrl": null
+      "winner": 1,
+      "finished": true,
+      "streams": [],
+      "matchUrl": "https://liquipedia.net/dota2/Match:ID_TI2026Main_R05-M001"
     }
   ],
-  "contentHash": "f581343108f4faed",
-  "updatedAt": "2026-08-23T12:01:43.510Z"
+  "contentHash": "ab3564d09bf5c664",
+  "updatedAt": "2026-08-23T13:55:35.084Z"
 }
