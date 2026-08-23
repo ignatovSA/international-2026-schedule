@@ -456,8 +456,8 @@
       "round": "Lower Bracket Final",
       "roundShort": "LB Final",
       "bracket": "lower",
-      "startsAtUnix": 1787450400,
-      "startsAt": "2026-08-23T02:00:00.000Z",
+      "startsAtUnix": 1787451000,
+      "startsAt": "2026-08-23T02:10:00.000Z",
       "bestOf": 3,
       "teams": [
         {
@@ -473,7 +473,10 @@
           "tbd": false
         }
       ],
-      "score": null,
+      "score": [
+        0,
+        0
+      ],
       "winner": null,
       "finished": false,
       "streams": [
@@ -484,8 +487,8 @@
         },
         {
           "platform": "youtube",
-          "url": "https://www.youtube.com/@dota2",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2"
+          "url": "https://www.youtube.com/watch?v=GMbjTK8UVks",
+          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/GMbjTK8UVks"
         }
       ],
       "matchUrl": null
@@ -524,13 +527,13 @@
         },
         {
           "platform": "youtube",
-          "url": "https://www.youtube.com/@dota2",
-          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2"
+          "url": "https://www.youtube.com/watch?v=GMbjTK8UVks",
+          "fallbackUrl": "https://liquipedia.net/dota2/Special:Stream/youtube/dota2/GMbjTK8UVks"
         }
       ],
       "matchUrl": null
     }
   ],
-  "contentHash": "344d2acc657d9a2b",
-  "updatedAt": "2026-08-22T15:45:25.410Z"
+  "contentHash": "efe22e2b2f7e42ab",
+  "updatedAt": "2026-08-23T02:39:08.661Z"
 }
