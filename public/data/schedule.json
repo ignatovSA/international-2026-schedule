@@ -488,8 +488,8 @@
       "round": "Grand Final",
       "roundShort": "Grand Final",
       "bracket": "grand-final",
-      "startsAtUnix": 1787462100,
-      "startsAt": "2026-08-23T05:15:00.000Z",
+      "startsAtUnix": 1787463000,
+      "startsAt": "2026-08-23T05:30:00.000Z",
       "bestOf": 5,
       "teams": [
         {
@@ -523,6 +523,6 @@
       "matchUrl": null
     }
   ],
-  "contentHash": "423feceeb170cd34",
-  "updatedAt": "2026-08-23T04:56:07.942Z"
+  "contentHash": "7403a0e2f8a76948",
+  "updatedAt": "2026-08-23T05:25:54.075Z"
 }
